@@ -1,6 +1,7 @@
 <%-- Java Imports --%>
 @import java.util.Map
 
+<%-- Parameters --%>
 @param Map<String, String> transactions
 
 <!DOCTYPE html>
