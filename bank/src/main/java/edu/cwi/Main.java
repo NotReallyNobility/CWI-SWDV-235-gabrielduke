@@ -1,7 +1,8 @@
 package edu.cwi;
 
 import io.javalin.Javalin;
-import static io.javalin.apibuilder.ApiBuilder.crud;
+import static io.javalin.apibuilder.ApiBuilder.*;
+import io.javalin.rendering.template.JavalinJte;
 import io.javalin.http.staticfiles.Location;
 /**
  * Hello world!
@@ -23,6 +24,9 @@ public class Main
             config.routes.get("/logout", ctx -> {
                 ctx.redirect("/");
             });
+
+            
+            config.fileRenderer(new JavalinJte()); // <-- set jte as the renderer
 
             config.routes.apiBuilder(() -> {
                 crud("/transactions/{id}", new TransactionsController());
