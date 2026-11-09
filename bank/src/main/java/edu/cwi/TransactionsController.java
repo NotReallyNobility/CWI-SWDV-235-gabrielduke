@@ -1,8 +1,10 @@
 package edu.cwi;
 
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import edu.cwi.Main.AppRole;
 import io.javalin.apibuilder.CrudHandler;
 import io.javalin.http.Context;
 import static j2html.TagCreator.body;
@@ -29,8 +31,9 @@ public class TransactionsController implements CrudHandler {
     public void getAll(Context ctx) {
         // Use ctx to render all transactions html
         
-        UserAccount userAccount = new UserAccount("Jimmity Bobbity Boo", 1235.8, transactions);
-        ctx.render("jte/accountPage.jte", Map.of("title", "Account Transactions", "account", userAccount));
+        UserAccount jimity = new UserAccount(UUID.fromString("94f6901f-cd0f-4c90-81dc-3601a071c077"), "Jimmity Bobbity Boo", AppRole.CUSTOMER, 1235.8, transactions);
+        UserAccount greg = new UserAccount(UUID.fromString("99377dc1-617d-45bd-b5fe-ac6418f06f43"), "gREG oOB", AppRole.CUSTOMER, 8532.1, transactions);
+        ctx.render("jte/accountPage.jte", Map.of("title", "Account Transactions", "account", jimity));
     }
 
     @Override
